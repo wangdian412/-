@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+
+            //【4，1，7，11，8，9】降序输出
+            var nums = [4, 1, 7, 11, 8, 9];
+            var num2 = [4, 1, 7, 11, 8, 9];
+
+            //冒泡排序
+            for (let i = 0; i < nums.length - 1; i++) {
+                for (let j = 0; j < nums.length - 1 - i; j++) {
+                    var d;
+                    if (nums[j] < nums[j + 1]) {
+                        d = nums[j];
+                        nums[j] = nums[j + 1];
+                        nums[j + 1] = d;
+                    }
+                }
+            }
+
+            //选择排序
+            for (let i = 0; i < num2.length; i++) {
+                for (let j = i + 1; j < num2.length; j++) {
+                    var min;
+                    if (num2[i] < num2[j]) {
+                        min = num2[i];
+                        num2[i] = num2[j];
+                        num2[j] = min;
+                    }
+                }
+            }
+
+            // console.log(nums);
+            document.getElementById("numbers").innerHTML = nums + "<br>" + num2;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="numbers">
+    </div>
+</body>
+
+</html>

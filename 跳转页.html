@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>发票录入</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/myjs2.js"></script>
+	<style>
+		.container {
+			background-color: rgb(199, 237, 204);
+		}
+
+		h1 {
+			text-align: center;
+		}
+	</style>
+
+</head>
+
+<body>
+	<!-- 做一个container容器 -->
+	<div class="container">
+		<br>
+		<div class="row">
+			<!-- 左边1/3,占空间用-->
+			<div class="col-sm-4"></div>
+			<!-- 中间表格 -->
+			<div class=" col-sm-4">
+				<h1>确认</h1>
+				<table class="table table-bordered " name="checkTable2" id="checkTable">
+					<tr>
+						<td>国家</td>
+						<td id="uCountry"></td>
+					</tr>
+					<tr>
+						<td>发票种类</td>
+						<td id="uReceipt"></td>
+					</tr>
+					<tr>
+						<td>开票日期</td>
+						<td id="uDate"></td>
+					</tr>
+					<tr>
+						<td>发票代码</td>
+						<td id="uCode"></td>
+					</tr>
+					<tr>
+						<td>开票单位</td>
+						<td id="uCompanyName"></td>
+					</tr>
+					<tr>
+						<td>纳税人识别号</td>
+						<td id="uPersonNumber"></td>
+					</tr>
+					<tr>
+						<td>金额(含税)</td>
+						<td id="uTotal"></td>
+					</tr>
+					<tr>
+						<td>名称</td>
+						<td id="uName"></td>
+					</tr>
+					<tr>
+						<td>录入日期</td>
+						<td id="uWritingDate"></td>
+					</tr>
+					<tr>
+						<td>文件</td>
+						<td id="uFile1"></td>
+					</tr>
+				</table>
+				<!-- 添加按钮 -->
+				<button class="btn btn-success" type="submit" onclick="twoSubmit()">确认</button>
+				<button class="btn btn-warning col-md-offset-8" type="button" onclick="back()">返回</button>
+				<button class="btn btn-success" type="submit" onclick="fillTableByCookie()">1</button>
+				<button class="btn btn-success" type="submit" onclick="fillTableBySessionStorage()">2</button>
+				<button class="btn btn-success" type="submit" onclick="fillTableByURL()">3</button>
+			</div>
+			<!-- 右边1/3,占空间用 -->
+			<div class="col-sm-4"></div>
+		</div>
+	</div>
+
+</body>
+
+</html>

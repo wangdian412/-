@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>发票录入</title>
+    <style>
+        table {
+            margin: auto
+        }
+    </style>
+
+</head>
+
+<body style="text-align:center;">
+    <form onsubmit="return submitForm()">
+
+        <div>
+            <table border="0" cellspacing="7">
+                <tr>
+                    <th>发票录入</th>
+                </tr>
+                <tr>
+                    <td align="right">国家:</td>
+                    <td align="left"><input type="radio" name="nation" value="中国">
+                        中国 <input id="nat" type="radio" name="nation" value="日本">日本
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><span style="color:red">*</span>发票种类:</td>
+                    <td align="left"><select name="expense" required>
+                            <option value="餐饮服务费">餐饮服务费</option>
+                            <option value="差旅费">差旅费</option>
+                            <option value="交通费">交通费</option>
+                            <option value="培训费">培训费</option>
+                            <option value="电话费">电话费</option>
+                            <option value="招待费">招待费</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><span style="color:red">*</span>开票日期:</td>
+                    <td align="left"><input id="dat." type="date" name="billing_date" required /></td>
+                </tr>
+                <tr>
+                    <td align="right"><span style="color:red">*</span>发票代码:</td>
+                    <td><input id="co." type="text" name="invoice_code" value="" required /></td>
+                </tr>
+                <tr>
+                    <td align="right"><span style="color:red">*</span>发票号码:</td>
+                    <td><input id="no." type="text" name="invoice_NO." value="" required /></td>
+                </tr>
+                <tr>
+                    <td align="right">纳税人识别号:</td>
+                    <td><input id="id. no." type="text" name="identity NO." value="" /></td>
+                </tr>
+                <tr>
+                    <td align="right"><span style="color:red">*</span>金额（纳税):</td>
+                    <td><input id="am." type="text" name="amount" value="" required /></td>
+                </tr>
+                <tr>
+                    <td align="right"><span style="color:red">*</span>名称:</td>
+                    <td><input id="na." type="text" name="name" value="" required /></td>
+                </tr>
+                <tr>
+                    <td align="right">录入日期:</td>
+                    <td align="left"><input type="date" name="date of entry" />
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input style="position:relative;left:10px"
+                            onclick="document.getElementById('file_select').click()" type="button"
+                            value="file select" />
+                        <input id="file_path" style="position:relative;left:10px" type="text" readonly="readonly" />
+                        <input id="file_select" style="width:0px;height:0px;"
+                            onchange="document.getElementById('file_select').value=this.value" type="file"
+                            readonly="readonly" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input onclick="checkform()" type="button" value="文件上传" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="添加" />
+                        <input type="button" value="删除" />
+                        <input type="button" value="修改" />
+                        <input type="button" value="查询" />
+                        <input type="button" value="重置" />
+                        <p id="demo"></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <script>
+        function submitForm() {
+            var myWindow = window.open("", "", "height = 400, width = 300, top = 100, left = 500");
+            myWindow.document.write("发票种类：" + document.getElementsByName("expense")[0].value + "<br />");
+            myWindow.document.write("开票日期：" + document.getElementsByName("billing_date")[0].value + "<br />");
+            myWindow.document.write("发票代码：" + document.getElementsByName("invoice_code")[0].value + "<br />");
+            myWindow.document.write("发票号码：" + document.getElementsByName("invoice_NO.")[0].value + "<br />");
+            myWindow.document.write("金额（纳税):" + document.getElementsByName("amount")[0].value + "<br />");
+            myWindow.document.write("名称：" + document.getElementsByName("name")[0].value + "<br />");
+            myWindow.document.write("<input type='button' id='submitbtn' value='确认'>");
+            myWindow.document.write("<input type='button' id='closepage' value='返回' onclick='window.close()'>");
+            return false;
+        }
+
+    </script>
+</body>
+
+</html>

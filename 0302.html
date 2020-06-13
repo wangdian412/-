@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            //遍历1到10000中,+=2连续的数
+            var xyz = [];
+            for (let i = 10; i < 10000; i++) {
+                if (i > 10 && i < 100) {
+                    var x = Math.floor(i / 10);
+                    var y = i % 10;
+                    if ((x + 2) == y) {
+                        xyz.push(i);
+                    }
+                }
+                if (i >= 100 && i < 1000) {
+                    var x = Math.floor(i / 100);
+                    var y = Math.floor(i / 10 % 10);
+                    var z = i % 10;
+                    if ((x + 2 == y) && (x + 4 == z)) {
+                        xyz.push(i);
+                    }
+                }
+                if (i >= 1000 && i < 10000) {
+                    var x = Math.floor(i / 1000);
+                    var y = Math.floor(i / 100 % 10);
+                    var z = Math.floor(i / 10 % 10);
+                    var w = i % 10;
+                }
+                if ((x + 2 == y) && (x + 4 == z) && (x + 6 == w)) {
+                    xyz.push(i);
+                }
+            }
+            console.log(xyz);
+            //今天讲的方法
+            var xyz1 = [];
+            for (let i = 2; i <= 4; i++) { //2到4位数
+                for (let j = 1; j <= 11 - 2 * i; j++) {//使倒数第二位不大于7
+                    var n = "";
+                    var x = j;
+                    for (K = 0; K < i; K++) {   // 有i个数位要填
+                        n += x;
+                        x += 2; //添加的数+2
+                    }
+                    xyz1.push(n);
+                }
+            }
+            console.log(xyz1);
+
+            //输出20个斐波那契数
+            //fn= f(n-1)+f(n-2)
+            // 可以理解为f(0)=0
+            // f(1) = 1; f(2) = 1 f(3) = 2;
+            var rabbits = new Array(0, 1, 1, 2);
+            for (let i = 4; i < 21; i++) {
+                rabbits[i] = rabbits[i - 1] + rabbits[i - 2];
+            }
+            console.log(rabbits);
+
+            var peach = 1;
+            for (let i = 0; i < 10; i++) {
+                peach = (peach + 1) * 2;
+            }
+            console.log(peach);
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<style>
+	body {
+		background-color: rgb(136, 206, 233);
+	}
+
+	div {
+		background-color: white;
+		text-align: center;
+		display: inline-block;
+		border: 1px solid black;
+		padding: 30px;
+	}
+
+	.center-in-center {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+</style>
+
+<head>
+	<script>
+		function setCookie(cname, cvalue, cpassword, cvalue1, exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			var expires = "expires=" + d.toGMTString();
+			document.cookie = cname + "=" + cvalue + ";" + cpassword + "=" + cvalue1 + ";" + expires;
+		}
+		function getCookie(cname, cpassword) {
+			var name = cname + "=";
+			var PSW = password + "=";
+			var ca = document.cookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i].trim();
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, PSW.length);
+					if (c.indexOf(PSW) == 0) {
+						return c.substring(PSW.length, c.length);
+					}
+				}
+			}
+			return "";
+		}
+		function checkCookie() {
+			var r = document.forms["input"].required;
+			if (r) {
+				var user = document.getElementById("username")
+				user = getCookie("username");
+				var data = document.getElementById("password")
+				data = getCookie("password");
+				if (user != "" && data != "") {
+					alert("欢迎 " + user + " 再次访问");
+				}
+				else {
+					var rem = document.forms["checkbox"];
+					if (user != "" && data != "" && rem.checked) {
+						setCookie("username", user, "password", data, 30);
+					}
+				}
+			} else {
+				return false;
+			}
+
+			function delCookie() {
+				var a = confirm("确定要清除登录信息吗？");
+				if (a) {
+					document.cookie = "username=; password=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+					window.location.reload();
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div class="center-in-center">
+		<form onload="checkCookie()">
+			<table>
+				<tr>
+					<th>————用户登录————</th>
+				</tr>
+				<tr>
+					<td><input type="text" name="username" id="username" placeholder="用户账号/手机号" required></td>
+				</tr>
+				<tr>
+					<td><input type="password" name="password" id="password" placeholder="密码" required></td>
+				</tr>
+			</table>
+			<input type="checkbox" id="checkbox">记住我
+			<input type="button" value="清除记录" onclick="delCookie()">
+			<input type="submit" id="submit"  value="登录">
+		</form>
+	</div>
+
+</body>
+
+</html>

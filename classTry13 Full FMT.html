@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    /* var str = "2019-12-25";
+// 转换日期格式
+str = str.replace(/-/g, '/'); // "2010/08/01";
+// 创建日期对象
+var date = new Date(str);
+//反之，日期类型转化为格式化的字符串： */
+
+    //完整的格式化  
+    Date.prototype.format = function (fmt) {   //prototype 属性使您有能力向对象添加属性和方法。当构造一个原型，/* ★★ */
+        //所有的日期对象都会默认添加属性和方法。https://www.runoob.com/jsref/jsref-prototype-date.html
+
+        var o = {
+            "M+": this.getMonth() + 1,               //月份 //https://www.runoob.com/js/js-regexp.html  n+	匹配任何包含至少一个  n 的字符串。/* ★★ */               
+            "d+": this.getDate(),                    //日 
+            "h+": this.getHours(),                   //小时 
+            "m+": this.getMinutes(),                 //分 
+            "s+": this.getSeconds(),                 //秒 
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+            "S": this.getMilliseconds()             //毫秒 
+        };
+        //处理年份
+        var reYear = /(y+)/;
+         //+  这个括号有啥用？？？？/* ★★★★★★ */           
+        var resultYear = reYear.exec(fmt);//这里不能用.match么 ? /* ★★ */ .match只能输出true或者false不能输出匹配到的字符串。
+        /* ★★★★★★ */alert(resultYear + "类型" + typeof (resultYear) + "长度" + resultYear.length);
+        //为什么返回了两个yyyy/* ★★★★★★ */
+        //.exec() 方法用于检索字符串中的正则表达式的匹配。 如果字符串中有匹配的值返回该匹配值，否则返回 null。 //.match？
+        //定义 reYear的格式，判断fmt中是否有符合reYear的部分
+        if (resultYear) //如果有 返回字符串，这里可以读成true yyyy
+        {
+            var yearformatPart = resultYear[0];//匹配到的格式化字符，resultYear的第一个元素，还是不知道为什么有俩
+            var yearVal = (this.getFullYear() + "").substr(4 - yearformatPart.length);
+            /* 
+            substr(start [，length]) 第一个字符的索引是0，start必选 length可选
+            substring(start [, end]) 第一个字符的索引是0，start必选 end可选 
+            */
+            fmt = fmt.replace(yearformatPart, yearVal);
+            //把fmt中符合yyyy的部分换成yearVal的值
+        }
+        for (var k in o) {
+            var re = new RegExp("(" + k + ")");  // RegExp 对象  https://www.runoob.com/js/js-obj-regexp.html 把这个字符串正则表达 eg: (M+) -> /(M+)/   /* ★★ */
+            /* 声明一个RegExp有两种方式：
+                1）var re=new RegExp(pattern,modifiers);
+                2）var re =/pattern/modifiers;     modifiers(修饰符) 用于指定全局匹配、区分大小写的匹配和多行匹配，具体有 i 、g 和 m 三类,这三类也可以自由组合也可以不添加修饰符。*/
+
+            /* ★★★★★★ */alert("k是" + k);
+            var re = re.exec(fmt);            // https://www.runoob.com/jsref/jsref-exec-regexp.html exec() 方法用于检索字符串中的正则表达式的匹配。  /* ★★ */
+            if (re) {   //有匹配值的话
+                var Val = "" + o[k];//本次需要替换的数据 
+                var formatPart = re[0];//匹配到的格式化字符 ,,,,还是拿出re里的第一个元素，不知道为什么会出两个/* ★★★★★★ */
+                var replaceVal = (formatPart.length == 1) ? (Val) : (("00" + Val).substr(Val.length)); //如果要替换的部分只有1个字符直接替换输出值，不是的话，两位加两个0变成 003或者0015再从值的位数开始取第二位开始或者第三位开始
+                fmt = fmt.replace(formatPart, replaceVal); //eg：把MM换成replaceVal的值
+            }
+        }
+        return fmt;
+    }
+    var time2 = new Date().format("yyyy-MM-dd hh:mm:ss S q");
+    alert(time2);
+</script>
+
+<body>
+
+</body>
+
+</html>

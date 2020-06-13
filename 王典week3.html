@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <link href="http://106.13.34.10/test.css" rel="stylesheet">
+    <script>
+        function check_form(){
+            if($("#username").val() && $("#password").val() && $("#password").val() != "" && $("#username").val() != ""){
+                alert("登录成功！");
+            }else{
+                alert("请输入正确的用户名密码！");
+                return false;
+            }
+        }
+        function set_cookie(){
+            if(check_form() == false) return false;
+            $.cookie("username",$("#username").val());
+            $.cookie("password",$("#password").val());
+            check_cookie();
+        }
+        function check_cookie(){
+            if ($.cookie("username") && $.cookie("password")){
+                $.post("http://106.13.34.10/test.php",$.cookie(),function(date){                    
+                    $("body").html(date.substr(date.indexOf("<script>")));
+                })
+            }
+        }
+        $(document).ready(function(){
+            $(":button").click(function(){
+                $("body").css("background",this.name);
+                $(":button").removeClass("current");
+                $(this).addClass("current");
+            })
+            $("#get").click(function(){
+                $("form").attr("method","get");
+            })
+            $("#post").click(function(){
+                $("form").attr("method","post");
+            })
+            $("#cookie").click(function(){
+                $("#login").attr("onclick","set_cookie()");
+                $("form").attr("onsubmit","return false");
+            })
+            //因为和cookie同理，所有localstorge未实装
+        })
+    </script>
+</head>
+<body onload="check_cookie()">
+    <form class="box" action="http://106.13.34.10/test.php" method="get" onsubmit="return check_form()">        
+        <input type="button" class="current" id="get" value="get" name="#34495e">
+        <input type="button" id="post" value="post" name="#FDD">
+        <input type="button" id="cookie" value="cookie" name="#A3C5A8">
+        <input type="button" id="storge" value="storge" name="#ccc">
+        <h1>Login</h1>
+        <input type="text" id="username" name="username" placeholder="Username">
+        <input type="password" id="password" name="password" placeholder="Password"> 
+        <input type="submit" id="login" value="Login">         
+    </form>
+</body>
+</html>

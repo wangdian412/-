@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        /* [4,1,7,11,8,9]降序输出 */
+        var num1 = [4,1,7,11,8,9];
+        document.write("降序排序前的数组：[" + num1 + "]<br />");
+        // 冒泡排序
+        function desSort(x){
+            for (i = 0; i < x.length - 1; i++) {
+                for (j = 0; j < x.length - i - 1; j++) {
+                    if (x[j] < x[j+1]) {
+                        var temp = x[j];
+                        x[j] = x[j+1];
+                        x[j+1] = temp;
+                    }
+                }
+            }
+        }
+        desSort(num1);
+        document.write("降序排序后的数组：[" + num1 + "]<br /><br />");
+
+        var num2 = [5,3,12,1,10,8];
+        document.write("降序排序前的数组：[" + num2 + "]<br />");
+        // 选择排序
+        function selectSort(x) {
+            for (i = 0; i < x.length - 1; i++) {
+                var min = i;
+                for (j = i + 1; j < x.length; j++) {
+                    if (x[j] > x[min]) {    
+                        min = j;               
+                    }
+                }
+                var temp = x[j];
+                x[j] = x[j+1];
+                x[j+1] = temp;
+            }
+        }
+        selectSort(num2);
+        document.write("降序排序后的数组：[" + num2 + "]<br /><br />");
+
+        /* 输出10000以内的连续的数-第一种做法 */
+        var result1 = [];
+        for (i = 1; i <= 10000; i++) {
+            // toString()将数值转换为字符串
+            var str = i.toString();
+            var flag = 1;
+            for (j = 0; j < str.length - 1; j++) {
+                // ※不能写 str[j+1] != str[j] + 1，用parseInt()将字符串转换为数值
+                if (parseInt(str[j+1]) != parseInt(str[j]) + 1) {   
+                    flag = 0;
+                    // 出现一次不连续，break跳出for循环
+                    break;
+                }
+            }
+            // 如果为个位数，flag置0
+            flag = (str.length == 1) ? 0 : flag;
+            if (flag == 1) {
+                // push()向数组末尾添加一个或多个元素，返回值为新数组的长度
+                result1.push(i);
+            }
+        }
+        document.write("10000以内的连续的数有：<br />第一种做法：" + result1 + "<br />");
+
+        /* 输出10000以内的连续的数-第二种做法 */
+        var result2 = [];
+        for (i = 2; i <= 4; i++) {  // 两位数~四位数
+            for (j = 1; j + i <= 10; j++) { // 使个位不大于9
+                // 字符串n存储所有数位合并结果
+                var n = "";
+                var x = j;
+                for (K = 0; K < i; K++) {   // 有i个数位要填
+                    n += x;
+                    x++;
+                }
+                result2.push(parseInt(n));
+            }
+        }
+        document.write("第二种做法：" + result2 + "<br />");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

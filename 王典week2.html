@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8">
+<script>
+    function sortby_down(a,b){
+        return b - a ;
+    };    
+    function continuous_number(max_number){
+        let tmp = [1,2,3,4,5,6,7,8,9] ; 
+        for (n = 0 ; tmp.slice(-1) < parseInt(max_number) ; n++){
+            if ( tmp[n] % 10 < 9) tmp.push(tmp[n] * 10 + tmp[n] % 10 + 1);           
+        };
+        return tmp.slice(9,length-1);
+    };
+    function res(){
+        let a = document.getElementsByTagName("input");
+        let number_list = continuous_number(a[1].value);
+        document.getElementsByTagName("p")[0].innerHTML = "一、" + "<br>" + a[0].value.split(",").sort(sortby_down) + "<br>" + "二、" + 
+         "<br>" + number_list + "<br>共" + number_list.length + "个" 
+    }
+</script>
+</head>
+<body>
+    请输入需要排序的数<input type="text" value="4,1,7,11,8,9">
+    请输入连续数的范围<input type="text" value="10000">
+    <input type="button" value="查询结果" onclick= "res()">
+    <p></p>
+</body>
+</html>

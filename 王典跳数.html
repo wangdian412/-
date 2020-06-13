@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>万能</title>
+
+
+    <script>
+
+
+        function go() {
+            alert("抽了");
+
+            var sum = [1 - 10000];
+
+            for (var i = 10; i < 10000; i++) {
+                if (i > 1000 && i < 9999) {
+                    p4(i);
+                }
+                else if (i > 100 && i < 999) {
+                    p3(i);
+                }
+                else if (i > 10 && i < 99) {
+                    p2(i);
+                }
+
+
+            }
+
+        }
+        //四位数
+        function p4(num) {
+            var temp = num;
+
+            var temp4 = temp % 10;
+            temp = (temp - temp4) / 10;
+
+            var temp3 = temp % 10;
+            temp = (temp - temp3) / 10;
+
+            var temp2 = temp % 10;
+            temp = (temp - temp2) / 10;
+
+            if (temp + 2 == temp2 && temp2 + 2 == temp3 && temp3 + 2 == temp4) {
+                console.log(num);
+            }
+
+
+        }
+        //三位数
+        function p3(num) {
+
+            var temp = num;
+
+            var temp3 = temp % 10;
+            temp = (temp - temp3) / 10;
+
+            var temp2 = temp % 10;
+            temp = (temp - temp2) / 10;
+
+            if (temp + 2 == temp2 && temp2 + 2 == temp3) {
+                console.log(num);
+            }
+        }
+        //两位数
+        function p2(num) {
+
+            var temp = num;
+
+            var temp2 = temp % 10;
+            temp = (temp - temp2) / 10;
+
+            if (temp + 2 == temp2) {
+                console.log(num);
+            }
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="发射" onclick="go()">
+</body>
+
+</html>

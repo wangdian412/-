@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>小黑一天吃768个桃子也太勇了</title>
+    <script>
+        /* [4,1,7,11,8,9]降序输出 */
+        var num = [4,1,7,11,8,9];
+        document.write("降序排序前的数组：[" + num + "]<br />");
+        // 选择排序
+        function selectSort(x){
+            for (let i = 0; i < x.length - 1; i++) {
+                for (let j = i; j < x.length - 1; j++) {
+                    if (x[i] < x[j+1]) {
+                        var temp = x[i];
+                        x[i] = x[j+1];
+                        x[j+1] = temp;
+                    }
+                }
+            }
+        }
+        selectSort(num);
+        document.write("降序排序后的数组：[" + num + "]<br /><br />");
+
+        /* 输出10000以内如13,24,35...的数 */
+        var result2 = [];
+        for (i = 2; i <= 4; i++) {  // 两位数~四位数
+            for (j = 1; j + i*2 <= 11; j++) { // 使个位不大于9
+                // 字符串n存储所有数位合并结果
+                var n = "";
+                var x = j;
+                for (K = 0; K < i; K++) {   // 有i个数位要填
+                    n += x;
+                    x+=2;
+                    if (x >= 10) break; 
+                }
+                result2.push(parseInt(n));
+            }
+        }
+        document.write("10000以内满足条件的数有：" + result2 + "<br /><br />");
+
+        /* 输出20个斐波那契数 */
+        var fb = [1,1];
+        for (let i = 0; i < 18; i++) {
+            var c = fb[fb.length - 1] + fb[fb.length -2];
+            fb.push(c);
+        }
+        document.write("输出20个斐波那契数：" + fb + "<br /><br />");
+
+        /* 小黑第一天摘了几个桃子 */
+        var amount = 1;
+        for (let i = 1; i <= 9; i++) {
+            amount = amount * 2 + 2;
+        }
+        document.write("小黑第一天摘了" + amount + "个桃子<br /><br />");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

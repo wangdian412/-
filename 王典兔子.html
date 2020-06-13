@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var rabbit1 = 2;
+        var rabbit2 = 0;
+        var rabbit3 = 0;
+        var all1 = 0;
+        var all2 = 0;
+        var all3 = 0;
+        var i = 1;
+        var cum=20;
+        while (i<=20) {
+            if (i == 1) {
+                rabbit1 = 2;
+                rabbit2 = 2;
+                rabbit3 = 0;
+                all1=rabbit1+rabbit2+rabbit3;
+            }
+            else if (i == 2) {
+                rabbit1 = 2;
+                rabbit2 = 4;
+                rabbit3 = 0;
+                all2=rabbit1+rabbit2+rabbit3;
+            }
+            else if (i == 3) {
+                rabbit1 = 2;
+                rabbit2 = 6;
+                rabbit3 = 0;
+                all3=rabbit1+rabbit2+rabbit3;
+            }
+            else {
+                rabbit3 = (rabbit1 + rabbit2) * 2;
+                rabbit2 = rabbit2 + 2;
+                rabbit1 = 2;
+
+                all1=all2;
+                all2=all3;
+                all3=rabbit1+rabbit2+rabbit3;
+
+
+            }
+            
+            
+                console.log(all3)
+            
+
+            i++;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
